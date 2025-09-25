@@ -1,0 +1,28 @@
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        
+        function fibonacciSeries() {
+
+            let a = 0, b = 1;
+            let result = a + ", " + b; // Start with 0, 1
+    
+            for (let i = 2; i < 10; i++) {
+
+                let next = a + b;
+                result += ", " + next;
+                a = b;
+                b = next;
+            }
+    
+            console.log("Fibonacci Series (10 numbers): " + result);
+            return result;
+            // ... your code
+        }
+        fibonacciSeries();
+    </script>
+</body>
+</html>

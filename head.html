@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Standard Chartered - Header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .left-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .home-icon {
+            font-size: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .location {
+            color: #00a651;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #00a651;
+        }
+        
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-icon {
+            font-size: 18px;
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .login-btn {
+            background-color: #00a651;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #008a43;
+        }
+        
+        .logo {
+            color: #00a651;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left-nav">
+                <a href="#home" class="home-icon">🏠</a>
+                <span class="location">You're in India</span>
+                <div class="nav-links">
+                    <a href="#products">Our Products</a>
+                    <a href="#promotions">Promotions</a>
+                    <a href="#services">Services</a>
+                    <a href="#help">Help</a>
+                </div>
+            </div>
+            <div class="right-nav">
+                <a href="#search" class="search-icon">🔍</a>
+                <button class="login-btn">🔒 LOGIN</button>
+                <div class="logo">Standard Chartered</div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

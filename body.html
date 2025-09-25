@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Standard Chartered - Main Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 50px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cards-container {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+       
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        @media (max-width: 1200px) {
+            .cards-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .card {
+                max-width: 300px;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+            }
+            
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>Welcome to Standard Chartered</h1>
+        
+        <div class="cards-container">
+            <article class="card">
+                <div class="card-image card1"></div>
+                <div class="card-content">
+                    <h3>Combating the illegal wildlife trade</h3>
+                    <p>See how we work with partners to fight money laundering and the illegal wildlife trade.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card2"></div>
+                <div class="card-content">
+                    <h3>Invest like you never left India</h3>
+                    <p>Invest on-the-go with NRI Banking.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card3"></div>
+                <div class="card-content">
+                    <h3>Explore the world like a local #PayLikeALocal</h3>
+                    <p>Load up to 20 currencies on the Multi-Currency Forex card. Apply now</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card4"></div>
+                <div class="card-content">
+                    <h3>SC Edge app – Exclusive for salary accounts</h3>
+                    <p>One app for travel, dining, recharges, bill pay & managing expenses. Know more</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card5"></div>
+                <div class="card-content">
+                    <h3>Get 5% cashback at supermarket</h3>
+                    <p>With Manhattan Platinum credit card</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>
