@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods Demo</title>
+</head>
+<body>
+    <h1>Array Methods Demo</h1>
+    <p>Open the browser's console (F12) to see the output of different array methods.</p>
+    
+    <script>
+        // Simple array of objects with key-value pairs
+        const items = [
+            { name: "Apple", price: 50 },
+            { name: "Banana", price: 20 },
+            { name: "Orange", price: 40 },
+            { name: "Mango", price: 80 },
+            { name: "Grapes", price: 60 }
+        ];
+
+        console.log("Original Array:");
+        console.log(items);
+        console.log("=".repeat(50));
+
+        // 1) forEach - Executes a function for each array element
+        console.log("1) forEach - Printing each item:");
+        items.forEach(function(item, index) {
+            console.log(`${index + 1}. ${item.name} costs ${item.price}`);
+        });
+        console.log("=".repeat(50));
+
+        // 2) map - Creates a new array by transforming each element
+        console.log("2) map - Creating an array of item names only:");
+        const itemNames = items.map(function(item) {
+            return item.name;
+        });
+        console.log(itemNames);
+
+        console.log("map - Creating an array of prices only:");
+        const itemPrices = items.map(function(item) {
+            return item.price;
+        });
+        console.log(itemPrices);
+
+        console.log("map - Creating formatted strings:");
+        const formattedItems = items.map(function(item) {
+            return `${item.name} - ${item.price}`;
+        });
+        console.log(formattedItems);
+        console.log("=".repeat(50));
+
+        // 3) filter - Creates a new array with elements that pass a test
+        console.log("3) filter - Finding items with price > $40:");
+        const expensiveItems = items.filter(function(item) {
+            return item.price > 40;
+        });
+        console.log(expensiveItems);
+
+        console.log("filter - Finding items with price <= $50:");
+        const cheapItems = items.filter(function(item) {
+            return item.price <= 50;
+        });
+        console.log(cheapItems);
+        console.log("=".repeat(50));
+
+        // 4) sort - Sorts the elements of an array
+        console.log("4) sort - Sorting by price (ascending):");
+        const sortedByPrice = [...items].sort(function(a, b) {
+            return a.price - b.price;
+        });
+        console.log(sortedByPrice);
+
+        console.log("sort - Sorting by price (descending):");
+        const sortedByPriceDesc = [...items].sort(function(a, b) {
+            return b.price - a.price;
+        });
+        console.log(sortedByPriceDesc);
+
+        console.log("sort - Sorting by name (alphabetical):");
+        const sortedByName = [...items].sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+        console.log(sortedByName);
+        console.log("=".repeat(50));
+
+        // Bonus: Chaining methods
+        console.log("Bonus - Chaining methods:");
+        console.log("Finding expensive items (>$40), getting their names, and sorting:");
+        const expensiveNames = items
+            .filter(item => item.price > 40)
+            .map(item => item.name)
+            .sort();
+        console.log(expensiveNames);
+
+        console.log("\nOriginal array remains unchanged:");
+        console.log(items);
+    </script>
+</body>
+</html>
