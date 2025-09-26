@@ -19,6 +19,46 @@
             { name: "Eve", age: 20, grade: 95, subject: "Science" }
         ];
 
+        // ========== SEPARATE FUNCTION DEFINITIONS ==========
+
+        // ForEach Functions
+        function printStudentName(student) {
+            console.log(`Student: ${student.name}`);
+        }
+
+        function printStudentInfo(student, index) {
+            console.log(`${index + 1}. ${student.name} scored ${student.grade} in ${student.subject}`);
+        }
+
+        // Map Functions
+        function getStudentName(student) {
+            return student.name;
+        }
+
+        function createStudentSummary(student) {
+            return `${student.name} (${student.age} years old)`;
+        }
+
+        // Filter Functions
+        function isHighGradeStudent(student) {
+            return student.grade > 85;
+        }
+
+        function isMathStudent(student) {
+            return student.subject === "Math";
+        }
+
+        // Sort Functions
+        function sortByGradeAscending(a, b) {
+            return a.grade - b.grade;
+        }
+
+        function sortByNameAlphabetical(a, b) {
+            return a.name.localeCompare(b.name);
+        }
+
+        // ========== USING THE FUNCTIONS ==========
+
         console.log("Original Array:", students);
         console.log("=" .repeat(50));
 
@@ -28,17 +68,13 @@
 
         // ForEach Example 1: Print each student's name
         console.log("Example 1a - Print all student names:");
-        students.forEach(function(student) {
-            console.log(`Student: ${student.name}`);
-        });
+        students.forEach(printStudentName);
 
         console.log();
 
         // ForEach Example 2: Print student info with grades
         console.log("Example 1b - Print student info with grades:");
-        students.forEach(function(student, index) {
-            console.log(`${index + 1}. ${student.name} scored ${student.grade} in ${student.subject}`);
-        });
+        students.forEach(printStudentInfo);
 
         console.log("=" .repeat(50));
 
@@ -47,16 +83,12 @@
         console.log("-".repeat(30));
 
         // Map Example 1: Get array of just names
-        const studentNames = students.map(function(student) {
-            return student.name;
-        });
+        const studentNames = students.map(getStudentName);
         console.log("Example 2a - Array of student names:");
         console.log(studentNames);
 
         // Map Example 2: Create summary strings
-        const studentSummaries = students.map(function(student) {
-            return `${student.name} (${student.age} years old)`;
-        });
+        const studentSummaries = students.map(createStudentSummary);
         console.log("Example 2b - Student summaries:");
         console.log(studentSummaries);
 
@@ -67,16 +99,12 @@
         console.log("-".repeat(30));
 
         // Filter Example 1: Students with grade above 85
-        const highGradeStudents = students.filter(function(student) {
-            return student.grade > 85;
-        });
+        const highGradeStudents = students.filter(isHighGradeStudent);
         console.log("Example 3a - Students with grades above 85:");
         console.log(highGradeStudents);
 
         // Filter Example 2: Students studying Math
-        const mathStudents = students.filter(function(student) {
-            return student.subject === "Math";
-        });
+        const mathStudents = students.filter(isMathStudent);
         console.log("Example 3b - Students studying Math:");
         console.log(mathStudents);
 
@@ -87,16 +115,12 @@
         console.log("-".repeat(30));
 
         // Sort Example 1: Sort by grade (ascending)
-        const sortedByGrade = [...students].sort(function(a, b) {
-            return a.grade - b.grade;
-        });
+        const sortedByGrade = [...students].sort(sortByGradeAscending);
         console.log("Example 4a - Students sorted by grade (lowest to highest):");
         console.log(sortedByGrade);
 
         // Sort Example 2: Sort by name (alphabetical)
-        const sortedByName = [...students].sort(function(a, b) {
-            return a.name.localeCompare(b.name);
-        });
+        const sortedByName = [...students].sort(sortByNameAlphabetical);
         console.log("Example 4b - Students sorted by name (A-Z):");
         console.log(sortedByName);
 
