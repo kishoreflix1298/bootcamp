@@ -3,98 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Array Methods Demo</title>
+    <title>JavaScript Array Methods Demo</title>
 </head>
 <body>
-    <h1>Array Methods Demo</h1>
-    <p>Open the browser's console (F12) to see the output of different array methods.</p>
-    
+    <h1>JavaScript Array Methods Demo</h1>
+    <p>Open the browser console (F12) to see the output!</p>
+
     <script>
-        // Simple array of objects with key-value pairs
-        const items = [
-            { name: "Apple", price: 50 },
-            { name: "Banana", price: 20 },
-            { name: "Orange", price: 40 },
-            { name: "Mango", price: 80 },
-            { name: "Grapes", price: 60 }
+        // Array of student objects
+        const students = [
+            { name: "Alice", age: 20, grade: 85, subject: "Math" },
+            { name: "Bob", age: 22, grade: 92, subject: "Science" },
+            { name: "Charlie", age: 19, grade: 78, subject: "Math" },
+            { name: "Diana", age: 21, grade: 88, subject: "English" },
+            { name: "Eve", age: 20, grade: 95, subject: "Science" }
         ];
 
-        console.log("Original Array:");
-        console.log(items);
-        console.log("=".repeat(50));
+        console.log("Original Array:", students);
+        console.log("=" .repeat(50));
 
-        // 1) forEach - Executes a function for each array element
-        console.log("1) forEach - Printing each item:");
-        items.forEach(function(item, index) {
-            console.log(`${index + 1}. ${item.name} costs ${item.price}`);
+        // 1. FOREACH - executes a function for each array element
+        console.log("1. FOREACH EXAMPLES:");
+        console.log("-".repeat(30));
+
+        // ForEach Example 1: Print each student's name
+        console.log("Example 1a - Print all student names:");
+        students.forEach(function(student) {
+            console.log(`Student: ${student.name}`);
         });
-        console.log("=".repeat(50));
 
-        // 2) map - Creates a new array by transforming each element
-        console.log("2) map - Creating an array of item names only:");
-        const itemNames = items.map(function(item) {
-            return item.name;
+        console.log();
+
+        // ForEach Example 2: Print student info with grades
+        console.log("Example 1b - Print student info with grades:");
+        students.forEach(function(student, index) {
+            console.log(`${index + 1}. ${student.name} scored ${student.grade} in ${student.subject}`);
         });
-        console.log(itemNames);
 
-        console.log("map - Creating an array of prices only:");
-        const itemPrices = items.map(function(item) {
-            return item.price;
+        console.log("=" .repeat(50));
+
+        // 2. MAP - creates a new array with results of calling a function on every element
+        console.log("2. MAP EXAMPLES:");
+        console.log("-".repeat(30));
+
+        // Map Example 1: Get array of just names
+        const studentNames = students.map(function(student) {
+            return student.name;
         });
-        console.log(itemPrices);
+        console.log("Example 2a - Array of student names:");
+        console.log(studentNames);
 
-        console.log("map - Creating formatted strings:");
-        const formattedItems = items.map(function(item) {
-            return `${item.name} - ${item.price}`;
+        // Map Example 2: Create summary strings
+        const studentSummaries = students.map(function(student) {
+            return `${student.name} (${student.age} years old)`;
         });
-        console.log(formattedItems);
-        console.log("=".repeat(50));
+        console.log("Example 2b - Student summaries:");
+        console.log(studentSummaries);
 
-        // 3) filter - Creates a new array with elements that pass a test
-        console.log("3) filter - Finding items with price > $40:");
-        const expensiveItems = items.filter(function(item) {
-            return item.price > 40;
+        console.log("=" .repeat(50));
+
+        // 3. FILTER - creates a new array with elements that pass a test
+        console.log("3. FILTER EXAMPLES:");
+        console.log("-".repeat(30));
+
+        // Filter Example 1: Students with grade above 85
+        const highGradeStudents = students.filter(function(student) {
+            return student.grade > 85;
         });
-        console.log(expensiveItems);
+        console.log("Example 3a - Students with grades above 85:");
+        console.log(highGradeStudents);
 
-        console.log("filter - Finding items with price <= $50:");
-        const cheapItems = items.filter(function(item) {
-            return item.price <= 50;
+        // Filter Example 2: Students studying Math
+        const mathStudents = students.filter(function(student) {
+            return student.subject === "Math";
         });
-        console.log(cheapItems);
-        console.log("=".repeat(50));
+        console.log("Example 3b - Students studying Math:");
+        console.log(mathStudents);
 
-        // 4) sort - Sorts the elements of an array
-        console.log("4) sort - Sorting by price (ascending):");
-        const sortedByPrice = [...items].sort(function(a, b) {
-            return a.price - b.price;
+        console.log("=" .repeat(50));
+
+        // 4. SORT - sorts elements of an array in place
+        console.log("4. SORT EXAMPLES:");
+        console.log("-".repeat(30));
+
+        // Sort Example 1: Sort by grade (ascending)
+        const sortedByGrade = [...students].sort(function(a, b) {
+            return a.grade - b.grade;
         });
-        console.log(sortedByPrice);
+        console.log("Example 4a - Students sorted by grade (lowest to highest):");
+        console.log(sortedByGrade);
 
-        console.log("sort - Sorting by price (descending):");
-        const sortedByPriceDesc = [...items].sort(function(a, b) {
-            return b.price - a.price;
-        });
-        console.log(sortedByPriceDesc);
-
-        console.log("sort - Sorting by name (alphabetical):");
-        const sortedByName = [...items].sort(function(a, b) {
+        // Sort Example 2: Sort by name (alphabetical)
+        const sortedByName = [...students].sort(function(a, b) {
             return a.name.localeCompare(b.name);
         });
+        console.log("Example 4b - Students sorted by name (A-Z):");
         console.log(sortedByName);
-        console.log("=".repeat(50));
 
-        // Bonus: Chaining methods
-        console.log("Bonus - Chaining methods:");
-        console.log("Finding expensive items (>$40), getting their names, and sorting:");
-        const expensiveNames = items
-            .filter(item => item.price > 40)
-            .map(item => item.name)
-            .sort();
-        console.log(expensiveNames);
+        console.log("=" .repeat(50));
+        console.log("EXPLANATION OF EACH METHOD:");
+        console.log("-".repeat(30));
+        
+        console.log(`
+📝 FOREACH:
+- Executes a function for each array element
+- Does NOT return a new array
+- Used when you want to DO something with each element
+- Cannot break out of the loop early
 
-        console.log("\nOriginal array remains unchanged:");
-        console.log(items);
+🗺️ MAP:
+- Creates a NEW array by transforming each element
+- Returns an array of the same length as original
+- Used when you want to TRANSFORM data
+- Original array remains unchanged
+
+🔍 FILTER:
+- Creates a NEW array with elements that pass a test
+- Returns an array that may be shorter than original
+- Used when you want to SELECT certain elements
+- Original array remains unchanged
+
+📊 SORT:
+- Sorts the elements of an array IN PLACE
+- Changes the original array (that's why we used [...students] to copy)
+- Returns the sorted array
+- Uses a compare function to determine sort order
+        `);
     </script>
 </body>
 </html>
