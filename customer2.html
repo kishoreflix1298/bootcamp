@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form with Testimonials</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding: 50px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: #e8e8e8;
+            border: 2px solid #999;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 15px;
+            margin: 0;
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        .form-control {
+            border: 2px solid #999;
+            background-color: #f5f5f5;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: #4a90e2;
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        .testimonials-container {
+            background-color: #e8e8e8;
+            border: 2px solid #999;
+            padding: 30px;
+        }
+
+        .testimonials-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #f8f9fa;
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .edit-delete-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            float: right;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .edit-delete-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Contact Form -->
+                <div class="form-container">
+                    <form id="contactForm">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control ms-2" id="userName" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex align-items-start">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control ms-2" id="userMessage" rows="4" placeholder="Enter your Message" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="submit-btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Testimonials Section -->
+                <div class="testimonials-container">
+                    <h2 class="testimonials-title">Testimonials</h2>
+                    
+                    <div id="testimonialsList">
+                        <!-- Default testimonial -->
+                        <div class="testimonial-card">
+                            <button class="edit-delete-btn" onclick="deleteTestimonial(this)">Edit | Delete</button>
+                            <div class="testimonial-name">Ritu</div>
+                            <div class="testimonial-text">It has been a positive experience with personable banking service in a timely manner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value;
+            const message = document.getElementById('userMessage').value;
+            
+            if (name && message) {
+                addTestimonial(name, message);
+                
+                // Clear form
+                document.getElementById('userName').value = '';
+                document.getElementById('userMessage').value = '';
+                
+                alert('Thank you! Your testimonial has been added.');
+            }
+        });
+
+        // Add new testimonial
+        function addTestimonial(name, message) {
+            const testimonialsList = document.getElementById('testimonialsList');
+            
+            const testimonialCard = document.createElement('div');
+            testimonialCard.className = 'testimonial-card';
+            
+            testimonialCard.innerHTML = `
+                <button class="edit-delete-btn" onclick="deleteTestimonial(this)">Edit | Delete</button>
+                <div class="testimonial-name">${name}</div>
+                <div class="testimonial-text">${message}</div>
+            `;
+            
+            testimonialsList.appendChild(testimonialCard);
+        }
+
+        // Delete testimonial
+        function deleteTestimonial(button) {
+            const card = button.parentElement;
+            const name = card.querySelector('.testimonial-name').textContent;
+            
+            if (confirm(`Are you sure you want to delete ${name}'s testimonial?`)) {
+                card.remove();
+            }
+        }
+    </script>
+</body>
+</html>
