@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Standard Chartered - Complete Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%);
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .left-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .home-icon {
+            font-size: 20px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .home-icon:hover {
+            color: #00a651;
+        }
+        
+        .location {
+            color: #00a651;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #00a651;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00a651;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-icon {
+            font-size: 18px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .search-icon:hover {
+            color: #00a651;
+            transform: scale(1.1);
+        }
+        
+        .login-btn {
+            background-color: #00a651;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #008a43;
+            transform: translateY(-1px);
+        }
+        
+        .logo {
+            color: #00a651;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Main Content Styles */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 50px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cards-container {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,166,81,0.1), rgba(74,144,226,0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card:hover .card-image::before {
+            opacity: 1;
+        }
+        
+        /* Card background images */
+        .card1 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .card2 { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .card3 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .card4 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .card5 { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+        
+        .card:hover h3 {
+            color: #00a651;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .cards-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .card {
+                max-width: 300px;
+                margin-bottom: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .left-nav {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-container {
+                padding: 30px 20px;
+                margin: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+            }
+            
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .left-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left-nav">
+                <a href="#home" class="home-icon">🏠</a>
+                <span class="location">You're in India</span>
+                <div class="nav-links">
+                    <a href="#products">Our Products</a>
+                    <a href="#promotions">Promotions</a>
+                    <a href="#services">Services</a>
+                    <a href="#help">Help</a>
+                </div>
+            </div>
+            <div class="right-nav">
+                <a href="#search" class="search-icon">🔍</a>
+                <button class="login-btn">🔒 LOGIN</button>
+                <div class="logo">Standard Chartered</div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <h1>Welcome to Standard Chartered</h1>
+        
+        <div class="cards-container">
+            <article class="card">
+                <div class="card-image card1"></div>
+                <div class="card-content">
+                    <h3>Combating the illegal wildlife trade</h3>
+                    <p>See how we work with partners to fight money laundering and the illegal wildlife trade.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card2"></div>
+                <div class="card-content">
+                    <h3>Invest like you never left India</h3>
+                    <p>Invest on-the-go with NRI Banking.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card3"></div>
+                <div class="card-content">
+                    <h3>Explore the world like a local #PayLikeALocal</h3>
+                    <p>Load up to 20 currencies on the Multi-Currency Forex card. Apply now</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card4"></div>
+                <div class="card-content">
+                    <h3>SC Edge app – Exclusive for salary accounts</h3>
+                    <p>One app for travel, dining, recharges, bill pay & managing expenses. Know more</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-image card5"></div>
+                <div class="card-content">
+                    <h3>Get 5% cashback at supermarket</h3>
+                    <p>With Manhattan Platinum credit card</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>
