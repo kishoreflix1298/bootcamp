@@ -89,19 +89,23 @@
             line-height: 1.5;
         }
 
-        .edit-delete-btn {
+        .action-btn {
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 15px;
             border-radius: 5px;
-            float: right;
             font-size: 14px;
             cursor: pointer;
+            margin-left: 5px;
         }
 
-        .edit-delete-btn:hover {
+        .action-btn:hover {
             background-color: #218838;
+        }
+
+        .btn-container {
+            float: right;
         }
     </style>
 </head>
@@ -145,7 +149,10 @@
                     <div id="testimonialsList">
                         <!-- Default testimonial -->
                         <div class="testimonial-card">
-                            <button class="edit-delete-btn" onclick="deleteTestimonial(this)">Edit | Delete</button>
+                            <div class="btn-container">
+                                <button class="action-btn" onclick="editTestimonial(this)">Edit</button>
+                                <button class="action-btn" onclick="deleteTestimonial(this)">Delete</button>
+                            </div>
                             <div class="testimonial-name">Ritu</div>
                             <div class="testimonial-text">It has been a positive experience with personable banking service in a timely manner</div>
                         </div>
@@ -159,46 +166,129 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // Get form element
+        var form = document.getElementById('contactForm');
+        
         // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('userName').value;
-            const message = document.getElementById('userMessage').value;
+            // Get input values
+            var nameInput = document.getElementById('userName');
+            var messageInput = document.getElementById('userMessage');
             
-            if (name && message) {
-                addTestimonial(name, message);
-                
-                // Clear form
-                document.getElementById('userName').value = '';
-                document.getElementById('userMessage').value = '';
-                
-                alert('Thank you! Your testimonial has been added.');
-            }
+            var name = nameInput.value;
+            var message = messageInput.value;
+            
+            // Add testimonial
+            addTestimonial(name, message);
+            
+            // Clear inputs
+            nameInput.value = '';
+            messageInput.value = '';
+            
+            // Show success message
+            alert('Thank you! Your testimonial has been added.');
         });
 
         // Add new testimonial
         function addTestimonial(name, message) {
-            const testimonialsList = document.getElementById('testimonialsList');
+            // Get testimonials list
+            var list = document.getElementById('testimonialsList');
             
-            const testimonialCard = document.createElement('div');
-            testimonialCard.className = 'testimonial-card';
+            // Create new card
+            var card = document.createElement('div');
+            card.className = 'testimonial-card';
             
-            testimonialCard.innerHTML = `
-                <button class="edit-delete-btn" onclick="deleteTestimonial(this)">Edit | Delete</button>
-                <div class="testimonial-name">${name}</div>
-                <div class="testimonial-text">${message}</div>
-            `;
+            // Create button container
+            var btnContainer = document.createElement('div');
+            btnContainer.className = 'btn-container';
             
-            testimonialsList.appendChild(testimonialCard);
+            // Create edit button
+            var editBtn = document.createElement('button');
+            editBtn.className = 'action-btn';
+            editBtn.textContent = 'Edit';
+            editBtn.onclick = function() {
+                editTestimonial(editBtn);
+            };
+            
+            // Create delete button
+            var deleteBtn = document.createElement('button');
+            deleteBtn.className = 'action-btn';
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.onclick = function() {
+                deleteTestimonial(deleteBtn);
+            };
+            
+            // Add buttons to container
+            btnContainer.appendChild(editBtn);
+            btnContainer.appendChild(deleteBtn);
+            
+            // Create name element
+            var nameDiv = document.createElement('div');
+            nameDiv.className = 'testimonial-name';
+            nameDiv.textContent = name;
+            
+            // Create message element
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'testimonial-text';
+            messageDiv.textContent = message;
+            
+            // Add all elements to card
+            card.appendChild(btnContainer);
+            card.appendChild(nameDiv);
+            card.appendChild(messageDiv);
+            
+            // Add card to list
+            list.appendChild(card);
+        }
+
+        // Edit testimonial
+        function editTestimonial(button) {
+            // Get the card
+            var card = button.parentElement.parentElement;
+            
+            // Get name and message elements
+            var nameDiv = card.querySelector('.testimonial-name');
+            var messageDiv = card.querySelector('.testimonial-text');
+            
+            // Get current values
+            var currentName = nameDiv.textContent;
+            var currentMessage = messageDiv.textContent;
+            
+            // Prompt for new name
+            var newName = prompt('Edit Name:', currentName);
+            
+            // If user didn't cancel
+            if (newName !== null && newName !== '') {
+                // Prompt for new message
+                var newMessage = prompt('Edit Message:', currentMessage);
+                
+                // If user didn't cancel
+                if (newMessage !== null && newMessage !== '') {
+                    // Update the values
+                    nameDiv.textContent = newName;
+                    messageDiv.textContent = newMessage;
+                    
+                    alert('Testimonial updated successfully!');
+                }
+            }
         }
 
         // Delete testimonial
         function deleteTestimonial(button) {
-            const card = button.parentElement;
-            const name = card.querySelector('.testimonial-name').textContent;
+            // Get the card
+            var card = button.parentElement.parentElement;
             
-            if (confirm(`Are you sure you want to delete ${name}'s testimonial?`)) {
+            // Get the name
+            var nameDiv = card.querySelector('.testimonial-name');
+            var name = nameDiv.textContent;
+            
+            // Confirm deletion
+            var confirmDelete = confirm('Are you sure you want to delete ' + name + "'s testimonial?");
+            
+            // If confirmed, remove the card
+            if (confirmDelete) {
                 card.remove();
             }
         }
